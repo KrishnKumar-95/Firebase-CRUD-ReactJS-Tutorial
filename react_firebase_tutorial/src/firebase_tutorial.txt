@@ -1,0 +1,80 @@
+// FIREBASE-9 TUTORIAL CRUD OPERATION
+
+1. npx create-react-app <app-name>
+2. npm install firebase
+3. DELETE UNNECCESARY FILES
+4. visit >> https://firebase.google.com/ and click on <GET STARTED>
+5. click on add project/create project
+6. enter project name then click continue
+7. then click continue on next page
+8. select google analytics account / configure google analytics then click create project
+9. it takes some time to get ready the project
+10. After completion click on continue
+11. click on top left gear then click project settings
+12. then scroll till the bottom and choose the option as per your requirement
+I am using Firebase for ReactJS App so i will choose </>
+13. then Enter the App name then click next
+14. Create file in your local project Any name can be given in my case <<firebase-config.js>>
+15. Copy the firebase config code from the Add firebase SDK section in <<firebase.google.com>>
+16. paste it into the file you created <<firebase-config.js>>
+
+const firebaseConfig = {
+  apiKey: "###############################",
+  authDomain: "################.firebaseapp.com",
+  projectId: "#################",
+  storageBucket: "################.appspot.com",
+  messagingSenderId: "222222222222222",
+  appId: "####################################",
+  measurementId: "#################"
+};
+
+This will be something like This
+17. Then paste this at the top of the file >> import { initializeApp } from "firebase/app";
+
+18. const app = initializeApp(firebaseConfig);  << Paste this line in your local file
+
+19. Then for the Database Go for <<Firestore Database>>
+20. then click on <<Create Database>>
+21. then click on <<production mode>> then click on next
+22. choose your location <<asia-south 1>> in my case for <<MUMBAI>>
+23. then Go to Rules section make true in the last line as below
+    allow read, write: if true;
+24. click on start collection in Data section
+25. Enter the name of the database in the <<Collection ID>> as i give <<users>> Then click on next
+
+26. Firebase uses MongoDB like approach of Collection and Documents
+Where Collection contains multiple Documents for example if i am making database of the persons then collection is the main table and each document stands for each person
+27. then click on Auto id in Document ID
+28. Then you can add as many fields as you can i am adding just 2 fields
+29. Field : name | Type : string | Value : any_name
+    Field : age | Type : number | Value : any_age
+Then click on save
+30. Now we can see the Collection name etc
+31. Then come the local <<firebase-config.js>>
+32. import the Firestore into this local file as below and pass the app into the <<getFirestore>>
+
+import {getFirestore} from "@firebase/firestore"
+export const db = getFirestore(app)
+
+33. we make export this << db >> variable because we have to use this outside this file
+
+Your file may look like this
+=============================================================>>
+||
+||    import { initializeApp } from "firebase/app";             
+||    import {getFirestore} from "@firebase/firestore"
+||    
+||    const firebaseConfig = {
+||      apiKey: "###############################",
+||      authDomain: "################.firebaseapp.com",
+||      projectId: "#################",
+||      storageBucket: "################.appspot.com",
+||      messagingSenderId: "222222222222222",
+||      appId: "####################################",
+||      measurementId: "#################"
+||    };
+||    
+||    const app = initializeApp(firebaseConfig);
+||    export const db = getFirestore(app)
+||    
+==============================================================>>
